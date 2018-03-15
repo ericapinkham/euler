@@ -20,5 +20,5 @@ collatz n
     | even n = n:collatz (n `div` 2)
     | odd n = n:collatz (n * 3 + 1)
 
-longest :: Int
-longest = foldl (\acc (n, l) -> if acc < l then n else acc) 0 $ zip [1..999999] $ map (length . collatz) [1..999999]
+longest :: Int -> Int
+longest m = foldl (\acc (n, l) -> if acc < l then n else acc) 0 $ zip [1..m] $ map (length . collatz) [1..m]
