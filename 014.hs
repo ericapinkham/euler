@@ -21,4 +21,4 @@ collatz n
     | odd n = n:collatz (n * 3 + 1)
 
 longest :: Int -> Int
-longest m = foldl (\acc (n, l) -> if acc < l then n else acc) 0 $ zip [1..m] $ map (length . collatz) [1..m]
+longest m = fst $ foldl1 (\(accN, accL) (n, l) -> if accL < l then (n, l) else (accN, accL)) $ zip [1..m] $ map (length . collatz) [1..m]
