@@ -1,5 +1,2 @@
-factorial :: Int -> Int
-factorial n = foldl1 (*) [1..n]
-
-choose :: Int -> Int -> Int
-choose n k = (factorial n) `div` (factorial (n - k) * factorial k)
+choose :: Integer -> Integer -> Integer
+choose n k = (foldl1 (*) [(k+1)..n]) `div` (foldl1 (*) [1..(n-k)])
