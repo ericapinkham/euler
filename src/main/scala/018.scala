@@ -34,5 +34,6 @@ object Euler018 extends App {
   // main stuff
   val lines = Source.fromFile("../../resources/018.txt").getLines().map(_.split(' ').map(_.toInt).toList).toList
 
-  
+  // Testing
+
 }
