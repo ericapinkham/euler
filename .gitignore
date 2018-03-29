@@ -3,3 +3,4 @@
 .metaserver
 project
 target
+*.class
