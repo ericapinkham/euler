@@ -34,39 +34,5 @@ object Euler018 extends App {
   // main stuff
   val lines = Source.fromFile("../../resources/018.txt").getLines().map(_.split(' ').map(_.toInt).toList).toList
 
-  // Construct the tree
-  val tree = NonEmpty(0,0, lines)
-  println(tree.bestPath)
-
-  // Tree structure stuff
-  sealed trait Triangle {
-    val sum: Int
-    def bestPath: Int
-  }
-  case class Empty() extends Triangle {
-    val sum = 0
-    def bestPath = 0
-  }
-
-  object NonEmpty {
-    def apply(row: Int, column: Int, lines: List[List[Int]]): NonEmpty = {
-      if (row >= lines.length - 1) new NonEmpty(lines(row)(column), new Empty, new Empty)
-      else new NonEmpty(lines(row)(column), NonEmpty(row + 1, column, lines), NonEmpty(row + 1, column + 1, lines))
-    }
-  }
-  case class NonEmpty(value: Int, leftTriangle: Triangle, rightTriangle: Triangle) extends Triangle {
-    lazy val sum: Int = value + leftTriangle.sum + rightTriangle.sum
-    def bestPath: Int = {
-      println(value)
-      (leftTriangle, rightTriangle) match {
-        case (NonEmpty(_, _, _), NonEmpty(_, _, _)) => {
-          if (leftTriangle.sum > rightTriangle.sum) value + leftTriangle.bestPath
-          else if (leftTriangle.sum < rightTriangle.sum) value + rightTriangle.bestPath
-          else value + (leftTriangle.bestPath max rightTriangle.bestPath)
-        }
-        case (Empty(), Empty()) => value
-        case (_, _) => throw new Error("Invalid pattern matching")
-      }
-    }
-  }
+  
 }
