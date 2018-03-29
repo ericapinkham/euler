@@ -31,9 +31,16 @@
 import scala.io.Source
 
 object Euler018 extends App {
-  // main stuff
+  // Read the lines from the file
   val lines = Source.fromFile("../../resources/018.txt").getLines().map(_.split(' ').map(_.toInt).toList).toList
 
-  // Testing
+  // Execute the search
+  println(search(lines))
 
+  // Define the recursive search. This is not optimal.
+  def search(triangle: List[List[Int]]): Int = triangle match {
+      case Nil => 0
+      case _ => triangle.head.head +
+        (search(triangle.tail.map(x => x.take(x.length - 1))) max search(triangle.tail.map(_.tail)))
+  }
 }
