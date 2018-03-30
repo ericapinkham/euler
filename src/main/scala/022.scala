@@ -11,9 +11,9 @@ import scala.io.Source
 object Euler022 extends App {
   val names = Source.fromFile("../../resources/022.txt").mkString.split(',').map(_.replace(""""""", "")).sorted
 
-  val scores = names.zipWithIndex.foldLeft(0) {(s,n) => NameValue(n._1) * (n._2 + 1) + s}
+  val scores = names.zipWithIndex.foldLeft(0) {(s,n) => nameValue(n._1) * (n._2 + 1) + s}
 
   println(scores)
 
-  def NameValue(name: String): Int = name.toCharArray.map(_.toInt - 64).sum
+  def nameValue(name: String): Int = name.toCharArray.map(_.toInt - 64).sum
 }
